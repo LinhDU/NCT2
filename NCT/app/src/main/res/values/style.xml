@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomSearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Màu chữ người dùng nhập -->
+        <item name="android:editTextColor">@color/colorAccent</item>
+        <!-- Màu chữ gợi ý (Hint) -->
+        <item name="android:textColorHint">#80FFFFFF</item>
+        <!-- Màu của các Icon (Kính lúp, dấu X, mũi tên quay lại) -->
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <!-- Đảm bảo nền của ô search không bị trắng đè lên -->
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>
