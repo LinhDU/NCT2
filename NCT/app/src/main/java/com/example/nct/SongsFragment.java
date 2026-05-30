@@ -35,7 +35,7 @@ public class SongsFragment extends Fragment {
             MainActivity mainActivity = (MainActivity) getActivity();
             if (mainActivity != null) {
                 // Khởi tạo adapter và gán vào biến của MainActivity
-                mainActivity.musicAdapter = new MusicAdapter(getContext(), musicFiles);
+                mainActivity.musicAdapter = new MusicAdapter(getContext(), musicFiles,"default");
                 recyclerView.setAdapter(mainActivity.musicAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
             }

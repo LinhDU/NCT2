@@ -1,20 +1,26 @@
 package com.example.nct;
 
+import com.google.gson.annotations.SerializedName;
+
 public class MusicFiles {
-    private String path;
+    private String id;
     private String title;
     private String artist;
     private String album;
-    private String duration;
-    private String id;
 
-    public MusicFiles(String path, String title, String artist, String album, String duration, String id) {
+    @SerializedName("fileUrl")
+    private String path;
+
+    private String duration;
+    private boolean isOnline;
+    public MusicFiles(String path, String title, String artist, String album, String duration, String id, boolean isOnline) {
         this.path = path;
         this.title = title;
         this.artist = artist;
         this.album = album;
         this.duration = duration;
         this.id = id;
+        this.isOnline = isOnline;
     }
 
     public MusicFiles() {
@@ -66,5 +72,13 @@ public class MusicFiles {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
     }
 }

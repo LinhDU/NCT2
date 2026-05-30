@@ -28,16 +28,19 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
 
     private Context mContext;
     private ArrayList<MusicFiles> mfiles;
+    private String sender;
 
-    public MusicAdapter(Context mContext, ArrayList<MusicFiles> mfiles) {
+    public MusicAdapter(Context mContext, ArrayList<MusicFiles> mfiles, String sender) {
         this.mContext = mContext;
         this.mfiles = mfiles;
+        this.sender=sender;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView file_name;
         ImageView album_art, menuMore;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +78,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PlayerActivity.class);
                 intent.putExtra("position", holder.getAdapterPosition());
+                intent.putExtra("sender", sender);
                 mContext.startActivity(intent);
             }
         });

@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private int deletePosition;
     static MusicAdapter musicAdapter;
     static ArrayList<MusicFiles> albums=new ArrayList<>();
+    public static ArrayList<MusicFiles> onlineMusicFiles = new ArrayList<>();
     private String MY_SORT_PREF = "SortOrder";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +72,30 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             return insets;
         });
     }
-    private void  permission(){
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_MEDIA_AUDIO)
-        != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_MEDIA_AUDIO},REQUESt_CODE);
-        }else {
+    private void permission() {
 
-                musicFiles = getAllAudio(this);
-                initViewPager();
+        String permission;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permission = Manifest.permission.READ_MEDIA_AUDIO;
+        } else {
+            permission = Manifest.permission.READ_EXTERNAL_STORAGE;
         }
 
+        if (ContextCompat.checkSelfPermission(this, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{permission},
+                    REQUESt_CODE
+            );
+
+        } else {
+
+            musicFiles = getAllAudio(this);
+            initViewPager();
+        }
     }
 
     @Override
@@ -100,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         ViewPager viewPager = findViewById(R.id.viewpape);
         TabLayout tabLayout  = findViewById((R.id.tab_layout));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragments(new OnlineSongsFragment(), "Cloud");
         viewPagerAdapter.addFragments(new SongsFragment(), "Songs");
         viewPagerAdapter.addFragments(new AlbumFragment(), "Albums");
         viewPager.setAdapter(viewPagerAdapter);
@@ -175,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 String path = cursor.getString(3);
                 String artist = cursor.getString(4);
                 String id = cursor.getString(5);
-                MusicFiles musicFiles = new MusicFiles(path, title, artist, album, duration, id);
+                MusicFiles musicFiles = new MusicFiles(path, title, artist, album, duration,id, false);
                 Log.e("Path: "+ path, "Album: " + album);
                 tempAudioList.add(musicFiles);
                 if(!duplicate.contains(album)){
@@ -266,6 +282,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         SharedPreferences.Editor editor = getSharedPreferences(MY_SORT_PREF,MODE_PRIVATE).edit();
         int id = item.getItemId();
+        if (id == R.id.admin_panel) {
+            Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.by_name) {
             editor.putString("sorting", "sortByName");
             editor.apply();
