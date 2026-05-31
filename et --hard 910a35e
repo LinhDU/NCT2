@@ -1,0 +1,14 @@
+[33m9a10c58[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/main
+[33m9a10c58[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: pull origin main --rebase (finish): returning to refs/heads/main
+[33m9a10c58[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: pull origin main --rebase (start): checkout 9a10c58e574539f84b0cec572013dcd18c7d7957
+[33m910a35e[m HEAD@{3}: commit: Noi backend
+[33m54a49f4[m HEAD@{4}: rebase (finish): returning to refs/heads/main
+[33m54a49f4[m HEAD@{5}: rebase (continue): ignore application.properties
+[33mf06b71d[m HEAD@{6}: pull origin main --rebase (start): checkout f06b71dc7616e4fb123396ca02fccf74f57f2535
+[33m69c90c0[m HEAD@{7}: commit: ignore application.properties
+[33m2f5ec36[m HEAD@{8}: pull origin main: Fast-forward
+[33m59cb41f[m HEAD@{9}: commit: add android project
+[33m34ab161[m HEAD@{10}: commit: add full project
+[33m8056313[m HEAD@{11}: Branch: renamed refs/heads/main to refs/heads/main
+[33m8056313[m HEAD@{13}: Branch: renamed refs/heads/master to refs/heads/main
+[33m8056313[m HEAD@{15}: commit (initial): first commit
